@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mundo Ebooks Store</title>
+  <script>
+    // Redirect según idioma del navegador: usa /es/ /en/ /zh/
+    (function(){{
+      const lang = navigator.language || navigator.userLanguage || 'es';
+      const code = lang.startsWith('zh') ? 'zh' : (lang.startsWith('en') ? 'en' : 'es');
+      if(!location.pathname.startsWith('/'+code+'/')){{
+        location.replace('/' + code + '/');
+      }}
+    }})();
+  </script>
+</head>
+<body>
+  <h1>Mundo Ebooks Store</h1>
+  <div id="content">Contenido en zh - listo para generarse automáticamente. revisá el README para activar los jobs.</div>
+  <footer><small>Automated affiliate storefront - connect your keys in config.json</small></footer>
+</body>
+</html>
