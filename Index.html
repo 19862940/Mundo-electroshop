@@ -1,1 +1,88 @@
-index.html
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Mundo Electroshop - Tienda</title>
+<style>
+  body{font-family:Arial,Helvetica,sans-serif;margin:0;padding:0;background:#f5f7fb}
+  header{background:#0b6fd6;color:white;padding:18px;text-align:center}
+  .container{max-width:980px;margin:18px auto;padding:12px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+  .card{background:white;border-radius:8px;padding:12px;box-shadow:0 2px 6px rgba(0,0,0,.06)}
+  .card img{width:100%;height:160px;object-fit:cover;border-radius:6px}
+  .title{font-weight:700;margin:8px 0;font-size:15px}
+  .price{color:#1b7f3a;font-weight:700;margin-bottom:8px}
+  .btn{display:inline-block;padding:8px 10px;border-radius:6px;text-decoration:none;background:#0b6fd6;color:white}
+  .footer{font-size:13px;color:#666;text-align:center;margin-top:18px}
+  .note{font-size:13px;color:#444;margin:8px 0}
+</style>
+</head>
+<body>
+<header>
+  <h1>Mundo Electroshop</h1>
+  <div style="font-size:14px;">Tienda automatizada — Pagos vía Mercado Pago / PayPal / Enlaces de afiliado</div>
+</header>
+
+<div class="container">
+  <div class="note">Abajo verás los productos. Cada botón "Comprar" abre el enlace que configures (enlace de Mercado Pago, PayPal, Amazon afiliados, etc.).</div>
+
+  <div id="products" class="grid"></div>
+
+  <div class="footer">¿Querés que agregue más productos automáticamente? Mandame el CSV o la lista y lo cargo.</div>
+</div>
+
+<script>
+/* === Lista de productos ===
+ Cada producto tiene:
+  - id: identificador
+  - title: nombre
+  - price: texto de precio
+  - img: URL de imagen (puede ser externa)
+  - link: ENLACE_DE_COMPRA (a Mercado Pago, PayPal, o afiliado)
+*/
+const products = [
+  {
+    id: "p1",
+    title: "Auriculares Bluetooth X200",
+    price: "USD 19.90",
+    img: "https://via.placeholder.com/600x400?text=Auriculares+X200",
+    link: "YOUR_PAYMENT_LINK_1"
+  },
+  {
+    id: "p2",
+    title: "Curso online de electrónica",
+    price: "USD 29.00",
+    img: "https://via.placeholder.com/600x400?text=Curso+Electrónica",
+    link: "YOUR_PAYMENT_LINK_2"
+  },
+  {
+    id: "p3",
+    title: "Kit de componentes electrónicos",
+    price: "USD 15.50",
+    img: "https://via.placeholder.com/600x400?text=Kit+Componentes",
+    link: "YOUR_PAYMENT_LINK_3"
+  }
+];
+
+function render() {
+  const container = document.getElementById('products');
+  container.innerHTML = '';
+  products.forEach(p=>{
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <img src="${p.img}" alt="${p.title}">
+      <div class="title">${p.title}</div>
+      <div class="price">${p.price}</div>
+      <a class="btn" href="${p.link}" target="_blank" rel="noopener">Comprar</a>
+    `;
+    container.appendChild(card);
+  });
+}
+
+render();
+</script>
+</body>
+</html>
+
